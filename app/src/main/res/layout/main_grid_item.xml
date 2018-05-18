@@ -1,0 +1,53 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:orientation="horizontal"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:background="@android:drawable/dialog_holo_light_frame"
+    android:paddingLeft="32dp">
+
+    <ImageView
+        android:layout_width="50dp"
+        android:layout_height="50dp"
+        android:padding="8dp"
+        android:layout_gravity="center"
+        android:tint="@android:color/white"
+        android:src="@drawable/ic_restaurant_black_24dp"
+        android:background="@drawable/circle_background"/>
+
+
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:padding="8dp"
+            android:layout_marginLeft="16dp"
+            android:layout_marginStart="16dp"
+            android:orientation="vertical">
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="0dp"
+                android:layout_weight="1"
+                android:id="@+id/iv_recipe_name"
+                android:padding="8dp"
+                android:textColor="@android:color/black"
+                tools:text="Carrot Cake"
+                android:textStyle="bold"
+                android:textSize="22sp"/>
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="0dp"
+                android:layout_weight="1"
+                android:id="@+id/tv_serving"
+                android:textColor="@android:color/black"
+               android:padding="8dp"
+                android:textSize="16sp"
+                tools:text="Serving: 6"/>
+        </LinearLayout>
+
+
+
+</LinearLayout>
