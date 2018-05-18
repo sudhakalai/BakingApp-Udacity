@@ -46,12 +46,11 @@ public class ProcedureDetailsFragment extends Fragment implements ExoPlayer.Even
     private static final String ARG_PARAM2 = "URL";
 
 
-
     public ProcedureDetailsFragment() {
         // Required empty public constructor
     }
 
-    public static ProcedureDetailsFragment newInstance(String param1, String param2) {
+    public static ProcedureDetailsFragment newInstance(String param1, String param2, String param3) {
         ProcedureDetailsFragment fragment = new ProcedureDetailsFragment();
         Bundle args = new Bundle();
         args.putString(ARG_PARAM1, param1);
@@ -86,17 +85,12 @@ public class ProcedureDetailsFragment extends Fragment implements ExoPlayer.Even
 
         initializeMediaSession();
 
-     /*   Intent intent = getActivity().getIntent();
-        if(intent.hasExtra("stepDesc")){
-            Step step = intent.getParcelableExtra("stepDesc");*/
             procedureDescription.setText(mDesc);
-           // String url = step.getUrl();
             if(mUrl != null && !mUrl.isEmpty()){
                 initializePlayer(Uri.parse(mUrl));
             }else {
                 mPlayerView.setVisibility(View.GONE);
             }
-        //}
 
         return rootView;
     }

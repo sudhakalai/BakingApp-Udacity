@@ -9,17 +9,17 @@
         android:id="@+id/recipe_widget_name_text"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:padding="8dp"
-        android:text="Recipes data not available."
+        android:padding="@dimen/width_8"
+        android:text="@string/recipe_no_data"
         android:textColor="@android:color/white"
-        android:textSize="22sp" />
+        android:textSize="@dimen/text_22" />
 
     <ListView
         android:id="@+id/recipe_widget_listview"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_margin="8dp"
+        android:layout_margin="@dimen/width_8"
         android:divider="@android:color/white"
-        android:dividerHeight="1dp" />
+        android:dividerHeight="@dimen/width_1" />
 
 </LinearLayout>

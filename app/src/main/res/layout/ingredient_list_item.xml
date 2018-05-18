@@ -9,8 +9,8 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:id="@+id/tv_ingredients"
-        android:padding="8dp"
-        android:textSize="16sp"
+        android:padding="@dimen/width_8"
+        android:textSize="@dimen/text_16"
         android:textColor="@android:color/black"
         tools:text="- All purpose flour (2 cups)"/>
 

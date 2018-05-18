@@ -18,6 +18,7 @@ public class ProcedureFragment extends Fragment {
 
     ArrayList<Step> mSteps = new ArrayList<>();
     private static final String ARG_PARAM = "Steps";
+    public static ViewPager viewPager;
 
     public ProcedureFragment() {
         // Required empty public constructor
@@ -50,14 +51,12 @@ public class ProcedureFragment extends Fragment {
             mSteps = savedInstanceState.getParcelableArrayList("stepsList");
         }
 
-        ViewPager viewPager = (ViewPager) rootView.findViewById(R.id.viewpager);
+        viewPager = rootView.findViewById(R.id.viewpager);
 
         StepViewPagerAdapter adapter = new StepViewPagerAdapter(getContext(), getFragmentManager(), mSteps);
 
         viewPager.setAdapter(adapter);
-//        viewPager.setCurrentItem(Integer.parseInt(mId));
-
-        TabLayout tabLayout = (TabLayout) rootView.findViewById(R.id.tabs);
+        TabLayout tabLayout = rootView.findViewById(R.id.tabs);
         viewPager.setSaveFromParentEnabled(false);
 
         tabLayout.setupWithViewPager(viewPager);
@@ -74,5 +73,9 @@ public class ProcedureFragment extends Fragment {
 
     public void setSteps(ArrayList<Step> steps){
         mSteps = steps;
+    }
+
+    public static ViewPager getViewPager() {
+        return viewPager;
     }
 }

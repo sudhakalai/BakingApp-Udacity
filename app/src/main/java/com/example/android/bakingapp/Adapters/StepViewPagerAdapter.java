@@ -11,7 +11,7 @@ import com.example.android.bakingapp.ProcedureDetailsFragment;
 import java.util.ArrayList;
 
 /**
- * Created by Sudha on 17-May-18.
+ * This adapter displays the selected ProcedureDetailsFragment on the viewpager.
  */
 
 public class StepViewPagerAdapter extends FragmentPagerAdapter {
@@ -33,7 +33,7 @@ public class StepViewPagerAdapter extends FragmentPagerAdapter {
 
     @Override
     public Fragment getItem(int position) {
-        return ProcedureDetailsFragment.newInstance(mSteps.get(position).getDesc(), mSteps.get(position).getUrl());
+        return ProcedureDetailsFragment.newInstance(mSteps.get(position).getDesc(), mSteps.get(position).getUrl(), mSteps.get(position).mStepId);
     }
 
     @Override

@@ -11,4 +11,6 @@
     <string name="add_widget">Add widget</string>
     <string name="serving">"Servings: "</string>
     <string name="widget_recipe_key">widget_recipe_key</string>
+    <string name="recipe_no_data">"Recipes data not available."</string>
+    <string name="recipe_widget">"Recipe added to widget"</string>
 </resources>

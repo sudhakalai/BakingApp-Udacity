@@ -11,21 +11,21 @@
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:layout_marginTop="64dp"
+        android:layout_marginTop="@dimen/width_64"
         android:orientation="vertical">
     <com.google.android.exoplayer2.ui.SimpleExoPlayerView
         android:id="@+id/playerView"
         android:layout_width="match_parent"
-        android:padding="16dp"
-        android:layout_height="250dp" />
+        android:padding="@dimen/width_16"
+        android:layout_height="@dimen/width_250" />
 
     <TextView
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:background="@android:drawable/dialog_holo_light_frame"
-        android:textSize="16sp"
-        android:padding="16dp"
-        android:layout_margin="16dp"
+        android:textSize="@dimen/text_16"
+        android:padding="@dimen/width_16"
+        android:layout_margin="@dimen/width_16"
         android:textColor="@android:color/black"
         android:id="@+id/tv_procedure_detail" />
 

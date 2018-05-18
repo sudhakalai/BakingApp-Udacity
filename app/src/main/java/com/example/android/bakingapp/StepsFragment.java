@@ -4,7 +4,6 @@ package com.example.android.bakingapp;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
-import android.support.v4.app.FragmentManager;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.util.Log;
@@ -76,12 +75,7 @@ public class StepsFragment extends Fragment implements StepAdapter.StepAdapterOn
     public void onClick(Step step) {
 
         if(isTwoPane){
-            ProcedureFragment procedureFragment = new ProcedureFragment();
-            procedureFragment.setSteps(mSteps);
-            FragmentManager fragmentManager = getFragmentManager();
-            fragmentManager.beginTransaction()
-                    .replace(R.id.procedure_container, procedureFragment)
-                    .commit();
+            ProcedureFragment.getViewPager().setCurrentItem(Integer.parseInt(step.getStepId()));
         }else {
             Intent intent = new Intent(getContext(), ProcedureDetailsActivity.class);
             intent.putExtra("stepDesc", step);

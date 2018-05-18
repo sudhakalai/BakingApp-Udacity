@@ -8,6 +8,7 @@ import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.MenuItem;
 import android.widget.ScrollView;
+import android.widget.Toast;
 
 import com.example.android.bakingapp.Model.Ingredient;
 import com.example.android.bakingapp.Model.Recipe;
@@ -95,6 +96,7 @@ public class DetailsActivity extends AppCompatActivity {
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
         if (item.getItemId() == R.id.action_add_to_widget) {
+            Toast.makeText(getBaseContext(), getResources().getString(R.string.recipe_widget), Toast.LENGTH_SHORT).show();
             RecipeWidgetService.updateWidget(this, mRecipe);
             return true;
         } else

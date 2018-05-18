@@ -7,9 +7,9 @@
         android:id="@+id/ingredient_item_text"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginBottom="8dp"
-        android:layout_marginTop="8dp"
+        android:layout_marginBottom="@dimen/width_8"
+        android:layout_marginTop="@dimen/width_8"
         android:gravity="center_vertical"
         android:textColor="@android:color/white"
-        android:textSize="14sp" />
+        android:textSize="@dimen/text_14" />
 </LinearLayout>
