@@ -17,6 +17,7 @@ public class RecipeContract {
         public static final String TABLE_NAME = "recipes";
         public static final String COLUMN_RECIPE_NAME = "recipename";
         public static final String COLUMN_SERVING = "serving";
+        public static final String COLUMN_IMAGE = "image";
         public static final String COLUMN_INGREDIENTS = "ingredients";
         public static final String COLUMN_STEPS = "steps";
         public static final Uri CONTENT_URI = Uri.withAppendedPath(BASE_CONTENT_URI, PATH_MOVIE);

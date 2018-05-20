@@ -5,10 +5,12 @@ import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.example.android.bakingapp.Model.Recipe;
 import com.example.android.bakingapp.R;
+import com.squareup.picasso.Picasso;
 
 import java.util.ArrayList;
 
@@ -44,8 +46,9 @@ public class MainAdapter extends RecyclerView.Adapter<MainAdapter.MainViewHolder
         holder.recipe = mRecipes.get(position);
         String recipeName = holder.recipe.getRecipeName();
         String serving = holder.recipe.getServing();
+        String image = holder.recipe.getImage();
 
-        holder.bind(recipeName, serving);
+        holder.bind(recipeName, serving,image);
 
     }
 
@@ -69,6 +72,7 @@ public class MainAdapter extends RecyclerView.Adapter<MainAdapter.MainViewHolder
         Context context;
         TextView recipeNameTv;
         TextView servingTv;
+        ImageView recipeIv;
         Recipe recipe;
 
         public MainViewHolder(View itemView) {
@@ -77,13 +81,21 @@ public class MainAdapter extends RecyclerView.Adapter<MainAdapter.MainViewHolder
             context = itemView.getContext();
             recipeNameTv = itemView.findViewById(R.id.iv_recipe_name);
             servingTv = itemView.findViewById(R.id.tv_serving);
+            recipeIv = itemView.findViewById(R.id.main_activity_iv);
             itemView.setOnClickListener(this);
         }
 
-        public void bind(String recipeName, String serving){
+        public void bind(String recipeName, String serving, String image){
             recipeNameTv.setText(recipeName);
             String servingText = context.getResources().getString(R.string.serving)+ serving;
             servingTv.setText(servingText);
+
+            if(image != null && !image.isEmpty()){
+                Picasso.with(context)
+                        .load(image)
+                        .into(recipeIv);
+            }
+
         }
 
         @Override

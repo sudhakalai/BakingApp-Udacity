@@ -10,6 +10,7 @@ import android.widget.TextView;
 
 import com.example.android.bakingapp.Model.Step;
 import com.example.android.bakingapp.R;
+import com.squareup.picasso.Picasso;
 
 import java.util.ArrayList;
 
@@ -46,9 +47,10 @@ public class StepAdapter extends RecyclerView.Adapter<StepAdapter.StepViewHolder
         String stepId = holder.step.getStepId();
         String desc = holder.step.getShortDesc();
         String url = holder.step.getUrl();
+        String thumbnail = holder.step.getThumbnail();
 
         String stepDesc = stepId + ". " + desc;
-        holder.bind(stepDesc, url);
+        holder.bind(stepDesc, url,thumbnail);
     }
 
     @Override
@@ -64,21 +66,30 @@ public class StepAdapter extends RecyclerView.Adapter<StepAdapter.StepViewHolder
 
         TextView stepTv;
         ImageView playIv;
+        ImageView imageView;
         Step step;
+        Context context;
 
         public StepViewHolder(View itemView) {
             super(itemView);
 
+            context = itemView.getContext();
             stepTv = itemView.findViewById(R.id.tv_step_desc);
             playIv = itemView.findViewById(R.id.iv_play_button);
+            imageView = itemView.findViewById(R.id.step_iv);
             itemView.setOnClickListener(this);
         }
 
-        public void bind(String stepDesc, String url){
+        public void bind(String stepDesc, String url, String thumbnail){
 
             stepTv.setText(stepDesc);
             if( !(url != null && !url.isEmpty())){
                 playIv.setVisibility(View.INVISIBLE);
+            }
+            if(thumbnail != null && !thumbnail.isEmpty()){
+                Picasso.with(context)
+                        .load(thumbnail)
+                        .into(imageView);
             }
 
         }

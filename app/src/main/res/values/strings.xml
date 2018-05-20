@@ -13,4 +13,6 @@
     <string name="widget_recipe_key">widget_recipe_key</string>
     <string name="recipe_no_data">"Recipes data not available."</string>
     <string name="recipe_widget">"Recipe added to widget"</string>
+    <string name="previous">Previous</string>
+    <string name="next">Next</string>
 </resources>

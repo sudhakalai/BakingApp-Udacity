@@ -19,6 +19,7 @@ public class ProcedureFragment extends Fragment {
     ArrayList<Step> mSteps = new ArrayList<>();
     private static final String ARG_PARAM = "Steps";
     public static ViewPager viewPager;
+    public static String mId;
 
     public ProcedureFragment() {
         // Required empty public constructor
@@ -58,7 +59,9 @@ public class ProcedureFragment extends Fragment {
         viewPager.setAdapter(adapter);
         TabLayout tabLayout = rootView.findViewById(R.id.tabs);
         viewPager.setSaveFromParentEnabled(false);
-
+        if(!DetailsActivity.getIsTwoPane()) {
+            viewPager.setCurrentItem(Integer.parseInt(mId));
+        }
         tabLayout.setupWithViewPager(viewPager);
 
 
@@ -73,6 +76,9 @@ public class ProcedureFragment extends Fragment {
 
     public void setSteps(ArrayList<Step> steps){
         mSteps = steps;
+    }
+    public void setId(String id ){
+        mId = id;
     }
 
     public static ViewPager getViewPager() {

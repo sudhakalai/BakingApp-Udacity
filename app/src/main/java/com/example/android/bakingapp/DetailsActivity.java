@@ -3,6 +3,7 @@ package com.example.android.bakingapp;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.v4.app.FragmentManager;
+import android.support.v4.app.NavUtils;
 import android.support.v7.app.AppCompatActivity;
 import android.view.Menu;
 import android.view.MenuInflater;
@@ -23,6 +24,7 @@ public class DetailsActivity extends AppCompatActivity {
     ArrayList<Ingredient> ingredients;
     ArrayList<Step> steps;
     Recipe mRecipe;
+    String image;
     public static boolean mTwoPane;
 
     @Override
@@ -31,6 +33,8 @@ public class DetailsActivity extends AppCompatActivity {
         setContentView(R.layout.activity_details);
 
         ScrollView scrollView = findViewById(R.id.sc_details_activity);
+
+        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
 
         if(savedInstanceState == null) {
 
@@ -44,6 +48,10 @@ public class DetailsActivity extends AppCompatActivity {
 
             if(intent.hasExtra("Serving")){
                 serving = intent.getStringExtra("Serving");
+            }
+
+            if(intent.hasExtra("Image")){
+                image = intent.getStringExtra("Image");
             }
 
             if(intent.hasExtra("IngredientList")){
@@ -66,7 +74,7 @@ public class DetailsActivity extends AppCompatActivity {
                         .commit();
             }
 
-            mRecipe = new Recipe(recipeName, serving, ingredients, steps);
+            mRecipe = new Recipe(recipeName, serving, ingredients, steps,image);
             }
 
             if(findViewById(R.id.tablet_procedure_layout) != null){
@@ -99,7 +107,11 @@ public class DetailsActivity extends AppCompatActivity {
             Toast.makeText(getBaseContext(), getResources().getString(R.string.recipe_widget), Toast.LENGTH_SHORT).show();
             RecipeWidgetService.updateWidget(this, mRecipe);
             return true;
-        } else
+        } else if(item.getItemId() == android.R.id.home){
+
+            NavUtils.navigateUpFromSameTask(this);
+            return true;
+        }else
             return super.onOptionsItemSelected(item);
     }
 }

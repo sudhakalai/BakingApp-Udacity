@@ -75,10 +75,10 @@ public class StepsFragment extends Fragment implements StepAdapter.StepAdapterOn
     public void onClick(Step step) {
 
         if(isTwoPane){
-            ProcedureFragment.getViewPager().setCurrentItem(Integer.parseInt(step.getStepId()));
+           ProcedureFragment.getViewPager().setCurrentItem(Integer.parseInt(step.getStepId()));
         }else {
             Intent intent = new Intent(getContext(), ProcedureDetailsActivity.class);
-            intent.putExtra("stepDesc", step);
+            intent.putExtra("stepId", step.getStepId());
             intent.putParcelableArrayListExtra("StepsList", mSteps);
             startActivity(intent);
         }

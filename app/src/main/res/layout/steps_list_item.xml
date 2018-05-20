@@ -5,6 +5,15 @@
     android:padding="@dimen/width_8"
     xmlns:tools="http://schemas.android.com/tools">
 
+    <ImageView
+        android:layout_width="@dimen/width_50"
+        android:layout_height="@dimen/width_50"
+        android:id="@+id/step_iv"
+        android:padding="@dimen/width_8"
+        android:layout_gravity="center"
+        android:tint="@color/colorPrimary"
+        android:src="@drawable/ic_restaurant_black_24dp" />
+
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
@@ -13,9 +22,9 @@
         android:id="@+id/tv_step_desc"
         android:textSize="@dimen/text_16"
         android:layout_alignParentTop="true"
-        android:layout_alignParentLeft="true"
+        android:layout_toRightOf="@id/step_iv"
         android:textColor="@android:color/black"
-        android:layout_alignParentStart="true"/>
+        />
 
     <ImageView
         android:layout_width="wrap_content"

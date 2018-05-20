@@ -13,12 +13,14 @@ public class Step implements Parcelable {
     public String mShortDesc;
     public String mDesc;
     public String mUrl;
+    public String mThumbnail;
 
-    public Step(String stepId, String shortDesc, String desc, String url){
+    public Step(String stepId, String shortDesc, String desc, String url, String thumbnail){
         mStepId = stepId;
         mShortDesc = shortDesc;
         mDesc = desc;
         mUrl = url;
+        mThumbnail = thumbnail;
     }
 
     protected Step(Parcel in) {
@@ -26,6 +28,7 @@ public class Step implements Parcelable {
         mShortDesc = in.readString();
         mDesc = in.readString();
         mUrl = in.readString();
+        mThumbnail = in.readString();
     }
 
     public static final Creator<Step> CREATOR = new Creator<Step>() {
@@ -44,6 +47,7 @@ public class Step implements Parcelable {
     public String getShortDesc() { return mShortDesc; }
     public String getDesc() { return mDesc; }
     public String getUrl() { return mUrl; }
+    public String getThumbnail() { return mThumbnail; }
 
     @Override
     public int describeContents() {
@@ -56,5 +60,6 @@ public class Step implements Parcelable {
         parcel.writeString(mShortDesc);
         parcel.writeString(mDesc);
         parcel.writeString(mUrl);
+        parcel.writeString(mThumbnail);
     }
 }

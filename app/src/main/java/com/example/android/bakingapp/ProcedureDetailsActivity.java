@@ -12,6 +12,7 @@ import java.util.ArrayList;
 public class ProcedureDetailsActivity extends AppCompatActivity {
 
     ArrayList<Step> mSteps = new ArrayList<>();
+    String id;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -25,10 +26,14 @@ public class ProcedureDetailsActivity extends AppCompatActivity {
             if(intent.hasExtra("StepsList")){
                 mSteps = intent.getParcelableArrayListExtra("StepsList");
             }
+            if(intent.hasExtra("stepId")){
+               id = intent.getStringExtra("stepId");
+            }
 
 
             ProcedureFragment procedureFragment = new ProcedureFragment();
             procedureFragment.setSteps(mSteps);
+            procedureFragment.setId(id);
             FragmentManager fragmentManager = getSupportFragmentManager();
             fragmentManager.beginTransaction()
                     .add(R.id.procedure_container, procedureFragment)

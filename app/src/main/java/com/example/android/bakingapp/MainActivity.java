@@ -91,6 +91,7 @@ public class MainActivity extends AppCompatActivity implements MainAdapter.MainA
         Intent intent = new Intent(this, DetailsActivity.class);
         intent.putExtra("RecipeName", recipe.getRecipeName());
         intent.putExtra("Serving",recipe.getServing());
+        intent.putExtra("Image",recipe.getImage());
         intent.putParcelableArrayListExtra("IngredientList", recipe.getIngredients());
         intent.putParcelableArrayListExtra("StepList", recipe.getSteps());
         startActivity(intent);
@@ -120,6 +121,7 @@ public class MainActivity extends AppCompatActivity implements MainAdapter.MainA
                 for(int i =0; i<recipesFromNetwork.size(); i++){
                     String recipeName = recipesFromNetwork.get(i).getRecipeName();
                     String serving = recipesFromNetwork.get(i).getServing();
+                    String image = recipesFromNetwork.get(i).getImage();
 
                     ArrayList<Ingredient> ingredients = recipesFromNetwork.get(i).getIngredients();
                     Gson gson = new Gson();
@@ -133,6 +135,7 @@ public class MainActivity extends AppCompatActivity implements MainAdapter.MainA
                     ContentValues values = new ContentValues();
                     values.put(RecipeContract.RecipeEntry.COLUMN_RECIPE_NAME, recipeName);
                     values.put(RecipeContract.RecipeEntry.COLUMN_SERVING, serving);
+                    values.put(RecipeContract.RecipeEntry.COLUMN_IMAGE, image);
                     values.put(RecipeContract.RecipeEntry.COLUMN_INGREDIENTS, ingredientList);
                     values.put(RecipeContract.RecipeEntry.COLUMN_STEPS, stepList);
                     cv_ArrayList.add(values);
@@ -170,6 +173,7 @@ public class MainActivity extends AppCompatActivity implements MainAdapter.MainA
             for (int i=0; i<cursor.getCount(); i++){
                 String recipeName = cursor.getString(cursor.getColumnIndex(RecipeContract.RecipeEntry.COLUMN_RECIPE_NAME));
                 String serving =cursor.getString(cursor.getColumnIndex(RecipeContract.RecipeEntry.COLUMN_SERVING));
+                String image = cursor.getString(cursor.getColumnIndex(RecipeContract.RecipeEntry.COLUMN_IMAGE));
 
                 String ingredientString = cursor.getString(cursor.getColumnIndex(RecipeContract.RecipeEntry.COLUMN_INGREDIENTS));
                 Gson gson = new Gson();
@@ -180,7 +184,7 @@ public class MainActivity extends AppCompatActivity implements MainAdapter.MainA
                 Gson gson1 = new Gson();
                 Type type1 = new TypeToken<ArrayList<Step>>() {}.getType();
                 ArrayList<Step> steps = gson1.fromJson(stepString, type1);
-                recipes.add(new Recipe(recipeName, serving, ingredients,steps));
+                recipes.add(new Recipe(recipeName, serving, ingredients,steps, image));
                 cursor.moveToNext();
 
            }

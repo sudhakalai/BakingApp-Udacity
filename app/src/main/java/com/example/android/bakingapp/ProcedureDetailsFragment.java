@@ -44,6 +44,8 @@ public class ProcedureDetailsFragment extends Fragment implements ExoPlayer.Even
     private String mUrl;
     private static final String ARG_PARAM1 = "Desc";
     private static final String ARG_PARAM2 = "URL";
+    private long mCurrentPosition = 0;
+    private boolean mPlayWhenReady = true;
 
 
     public ProcedureDetailsFragment() {
@@ -76,6 +78,8 @@ public class ProcedureDetailsFragment extends Fragment implements ExoPlayer.Even
         if(savedInstanceState != null){
             mDesc = savedInstanceState.getString("descDetail");
             mUrl = savedInstanceState.getString("urlDetail");
+            mCurrentPosition = savedInstanceState.getLong("position");
+            mPlayWhenReady = savedInstanceState.getBoolean("playWhenReady");
         }
         // Inflate the layout for this fragment
         View rootView = inflater.inflate(R.layout.fragment_procedure_details, container, false);
@@ -99,6 +103,8 @@ public class ProcedureDetailsFragment extends Fragment implements ExoPlayer.Even
     public void onSaveInstanceState(Bundle outState) {
         outState.putString("descDetail", mDesc);
         outState.putString("urlDetail", mUrl);
+        outState.putLong("position", mCurrentPosition);
+        outState.putBoolean("playWhenReady", mPlayWhenReady);
     }
 
 
@@ -147,13 +153,19 @@ public class ProcedureDetailsFragment extends Fragment implements ExoPlayer.Even
             MediaSource mediaSource = new ExtractorMediaSource(mediaUri, new DefaultDataSourceFactory(
                     getContext(), userAgent), new DefaultExtractorsFactory(), null, null);
             mExoPlayer.prepare(mediaSource);
-            mExoPlayer.setPlayWhenReady(true);
+            if (mCurrentPosition != 0)
+                mExoPlayer.seekTo(mCurrentPosition);
+
+            mExoPlayer.setPlayWhenReady(mPlayWhenReady);
+            mPlayerView.setVisibility(View.VISIBLE);
         }
     }
 
     private void releasePlayer() {
 
-        if(mPlayerView.getVisibility() == View.VISIBLE){
+        if(mPlayerView.getVisibility() == View.VISIBLE && mExoPlayer != null){
+            mPlayWhenReady = mExoPlayer.getPlayWhenReady();
+            mCurrentPosition = mExoPlayer.getCurrentPosition();
             mExoPlayer.stop();
             mExoPlayer.release();
             mExoPlayer = null;
@@ -164,6 +176,18 @@ public class ProcedureDetailsFragment extends Fragment implements ExoPlayer.Even
     @Override
     public void onDestroy() {
         super.onDestroy();
+        releasePlayer();
+    }
+
+    @Override
+    public void onStop() {
+        super.onStop();
+        releasePlayer();
+    }
+
+    @Override
+    public void onPause() {
+        super.onPause();
         releasePlayer();
     }
 

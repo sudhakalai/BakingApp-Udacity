@@ -16,18 +16,21 @@ public class Recipe {
     private String mServing;
     private ArrayList<Ingredient> mIngredients;
     private ArrayList<Step> mSteps;
+    private String mImage;
 
-    public Recipe(String recipeName, String serving, ArrayList<Ingredient> ingredients, ArrayList<Step> steps ){
+    public Recipe(String recipeName, String serving, ArrayList<Ingredient> ingredients, ArrayList<Step> steps,String image ){
         mRecipeName = recipeName;
         mServing = serving;
         mIngredients = ingredients;
         mSteps = steps;
+        mImage = image;
     }
 
     public String getRecipeName(){ return mRecipeName; }
     public String getServing() { return mServing; }
     public ArrayList<Ingredient> getIngredients(){ return mIngredients;}
     public ArrayList<Step> getSteps(){ return mSteps;}
+    public String getImage(){ return mImage; }
 
     public static String toBaseString(Recipe recipe) {
         Gson gson = new Gson();
